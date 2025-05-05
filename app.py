@@ -15,15 +15,6 @@ st.title("SHL Assessment Recommendation System")
 debug_mode = False
 
 
-ip = st.experimental_get_query_params().get("ip")
-print(f"IIIPPPP {ip}")
-st.write(f"IP {ip}")
-import socket
-h = socket.gethostname()
-print(f"IIIPPPP2 {ip}")
-st.write(f"IP 2 {ip}")
-
-
 def get_response(input_text):
     response = requests.post("http://localhost:8003/recommend", json={'query': input_text})
     return response.json()
