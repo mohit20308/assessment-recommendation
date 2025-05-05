@@ -15,6 +15,7 @@ from langchain_community.document_loaders import CSVLoader
 from langchain_community.vectorstores import FAISS
 from langchain_core.embeddings import FakeEmbeddings
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
+import google.generativeai as genai
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -39,6 +40,8 @@ def add_api_keys():
     if GOOGLE_API_KEY == 'None' or GOOGLE_API_KEY == '':
         print('You must specify Google API Key in .env file. Use https://aistudio.google.com/app/apikey to generate key')
         sys.exit(0)
+        
+    genai.configure(api_key=GOOGLE_API_KEY)
 
 
 def load_data(file_path):
