@@ -33,9 +33,7 @@ app = FastAPI(
 
 def add_api_keys():
     load_dotenv('.env')
-    GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
-    if GOOGLE_API_KEY:
-        GOOGLE_API_KEY = st.secrets["api_keys"]["GOOGLE_API_KEY"]
+    GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY') or st.secrets["api_keys"]["GOOGLE_API_KEY"]
 
     if GOOGLE_API_KEY == 'None' or GOOGLE_API_KEY == '':
         print('You must specify Google API Key in .env file. Use https://aistudio.google.com/app/apikey to generate key')
