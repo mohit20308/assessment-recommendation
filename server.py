@@ -185,5 +185,5 @@ if __name__ == "__main__":
 
         return JSONResponse(content={"mean_recall_3" : mean_recall_3, "mean_avg_precision_3" : mean_precision_3})
 
-    uvicorn.run(app, host = "localhost", port = 8003)
+    uvicorn.run(app, host = "0.0.0.0", port = 8003)
 
