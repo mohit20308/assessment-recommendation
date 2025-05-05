@@ -40,7 +40,8 @@ def add_api_keys():
     if GOOGLE_API_KEY == 'None' or GOOGLE_API_KEY == '':
         print('You must specify Google API Key in .env file. Use https://aistudio.google.com/app/apikey to generate key')
         sys.exit(0)
-    API_KEY = GOOGLE_API_KEY   
+    global API_KEY
+    API_KEY = GOOGLE_API_KEY
 
 def load_data(file_path):
     loader = CSVLoader(file_path = file_path, encoding='utf-8')
