@@ -1,0 +1,15 @@
+pandas
+tqdm
+beautifulsoup4
+requests
+langchain
+langchain_community
+fastapi
+langchain-google-genai
+uvicorn
+langserve
+python-dotenv
+streamlit
+faiss-cpu
+sse_starlette
+langchain_core
