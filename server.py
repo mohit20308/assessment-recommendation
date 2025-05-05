@@ -24,6 +24,7 @@ formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s', datef
 console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.info("Server Starting")
+API_KEY = None
 
 app = FastAPI(
     title = "Assessment Recommendation Engine",
@@ -33,14 +34,13 @@ app = FastAPI(
 
 def add_api_keys():
     load_dotenv('.env')
-    GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
-    if GOOGLE_API_KEY:
-        GOOGLE_API_KEY = st.secrets["api_keys"]["GOOGLE_API_KEY"]
+    #GOOGLE_API_KEY = os.getenv('GOOGLE_API_KEY')
+    GOOGLE_API_KEY = st.secrets["api_keys"]["GOOGLE_API_KEY"]
 
     if GOOGLE_API_KEY == 'None' or GOOGLE_API_KEY == '':
         print('You must specify Google API Key in .env file. Use https://aistudio.google.com/app/apikey to generate key')
         sys.exit(0)
-
+    API_KEY = GOOGLE_API_KEY   
 
 def load_data(file_path):
     loader = CSVLoader(file_path = file_path, encoding='utf-8')
@@ -53,7 +53,7 @@ def generate_embeddings():
     if debug_mode:
         embeddings = FakeEmbeddings(size=4096)
     else:
-        embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004")
+        embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", google_api_key=API_KEY)
     return embeddings
 
 
