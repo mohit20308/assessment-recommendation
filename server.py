@@ -118,7 +118,7 @@ if __name__ == "__main__":
     @app.get("/health")
     def check_health():
         try:
-            response = requests.get("http://localhost:8000/docs")
+            response = requests.get("http://0.0.0.0:8003/docs")
             if response.status_code == 200:
                 return JSONResponse(content = {"status": "healthy"}, status_code = status.HTTP_200_OK)
             else:
@@ -185,5 +185,5 @@ if __name__ == "__main__":
 
         return JSONResponse(content={"mean_recall_3" : mean_recall_3, "mean_avg_precision_3" : mean_precision_3})
 
-    uvicorn.run(app, host = "20.42.11.21", port = 8003)
+    uvicorn.run(app, host = "0.0.0.0", port = 8003)
 
