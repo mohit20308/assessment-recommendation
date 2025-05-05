@@ -8,7 +8,7 @@ import streamlit as st
 
 venv_python = os.path.join('/', 'home', 'adminuser', 'venv', 'bin', 'python')
 subprocess.Popen([venv_python, "server.py"])
-time.sleep(2)
+time.sleep(5)
 
 st.set_page_config(layout="wide")
 st.title("SHL Assessment Recommendation System")
