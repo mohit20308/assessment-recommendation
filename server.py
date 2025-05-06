@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
     @app.get("/health")
     def check_health():
-        JSONResponse(content = {"status": "healthy"}, status_code = status.HTTP_200_OK)
+        return JSONResponse(content = {"status": "healthy"}, status_code = status.HTTP_200_OK)
         # try:
         #     response = requests.get("http://0.0.0.0:8003/docs")
         #     if response.status_code == 200:
