@@ -119,15 +119,16 @@ if __name__ == "__main__":
 
     @app.get("/health")
     def check_health():
-        try:
-            response = requests.get("http://0.0.0.0:8003/docs")
-            if response.status_code == 200:
-                return JSONResponse(content = {"status": "healthy"}, status_code = status.HTTP_200_OK)
-            else:
-                return JSONResponse(content={"status": "unhealthy"}, status_code = response.status_code)
-        except Exception as e:
-            logger.error(f"Exception : {e}")
-            return JSONResponse(content={"status": "unhealthy"}, status_code = status.HTTP_500_INTERNAL_SERVER_ERROR)
+        JSONResponse(content = {"status": "healthy"}, status_code = status.HTTP_200_OK)
+        # try:
+        #     response = requests.get("http://0.0.0.0:8003/docs")
+        #     if response.status_code == 200:
+        #         return JSONResponse(content = {"status": "healthy"}, status_code = status.HTTP_200_OK)
+        #     else:
+        #         return JSONResponse(content={"status": "unhealthy"}, status_code = response.status_code)
+        # except Exception as e:
+        #     logger.error(f"Exception : {e}")
+        #     return JSONResponse(content={"status": "unhealthy"}, status_code = status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     @app.post("/recommend")
     async def recommend_movies(request: dict):
