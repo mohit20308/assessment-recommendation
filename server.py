@@ -120,18 +120,9 @@ if __name__ == "__main__":
     @app.get("/health")
     def check_health():
         return JSONResponse(content = {"status": "healthy"}, status_code = status.HTTP_200_OK)
-        # try:
-        #     response = requests.get("http://0.0.0.0:8003/docs")
-        #     if response.status_code == 200:
-        #         return JSONResponse(content = {"status": "healthy"}, status_code = status.HTTP_200_OK)
-        #     else:
-        #         return JSONResponse(content={"status": "unhealthy"}, status_code = response.status_code)
-        # except Exception as e:
-        #     logger.error(f"Exception : {e}")
-        #     return JSONResponse(content={"status": "unhealthy"}, status_code = status.HTTP_500_INTERNAL_SERVER_ERROR)
 
     @app.post("/recommend")
-    async def recommend_movies(request: dict):
+    async def recommend_assessments(request: dict):
         query = request.get("query")
         try:
             logger.info("Query: " + query)
@@ -147,7 +138,7 @@ if __name__ == "__main__":
             df = pd.read_csv(file_path)
             for doc in res:
                 row = doc.metadata['row']
-                assessment_dict = df.iloc[row].to_dict()
+                assessment_dict = df.iloc[row][['url', 'adaptive_support', 'description', 'duration', 'remote_support', 'test_type']].to_dict()
 
                 test_type = assessment_dict['test_type']
                 assessment_dict['test_type'] = [test_type_map.get(test, 'Unknown') for test in test_type]
@@ -186,7 +177,7 @@ if __name__ == "__main__":
         print(f'Mean Recall@3: {round(mean_recall_3, 3)}')
         print(f'Mean Average Precision @3: {round(mean_precision_3, 3)}')
 
-        return JSONResponse(content={"mean_recall_3" : mean_recall_3, "mean_avg_precision_3" : mean_precision_3})
+        return JSONResponse(content={"mean_recall_3" : round(mean_recall_3, 3), "mean_avg_precision_3" : round(mean_precision_3, 3)})
 
     uvicorn.run(app, host = "0.0.0.0", port = 8003)
 
