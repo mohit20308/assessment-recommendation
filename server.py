@@ -58,7 +58,7 @@ def generate_embeddings():
     else:
         #embedding model text-embedding-004 deprecated
         #embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", google_api_key=API_KEY)
-        embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-005", google_api_key=API_KEY)
+        embeddings = GoogleGenerativeAIEmbeddings(model="models/gemini-embedding-001", google_api_key=API_KEY)
     return embeddings
 
 
