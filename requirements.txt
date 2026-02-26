@@ -13,3 +13,4 @@ streamlit
 faiss-cpu
 sse_starlette
 langchain_core
+altair==4.2.2
