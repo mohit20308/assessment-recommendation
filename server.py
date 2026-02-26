@@ -56,7 +56,9 @@ def generate_embeddings():
     if debug_mode:
         embeddings = FakeEmbeddings(size=4096)
     else:
-        embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", google_api_key=API_KEY)
+        # embedding model deprecated
+        #embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-004", google_api_key=API_KEY)
+        embeddings = GoogleGenerativeAIEmbeddings(model="models/text-embedding-005", google_api_key=API_KEY)
     return embeddings
 
 
